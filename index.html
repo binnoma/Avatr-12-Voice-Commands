@@ -345,16 +345,24 @@
         }
 
         .cmd-ar {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            /* تصغير للنصوص الطويلة */
             font-weight: 700;
             color: #e8f4ff;
             line-height: 1.2;
         }
 
         .cmd-cn {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
+            /* تصغير للنصوص الطويلة */
             color: var(--sub);
             line-height: 1.2;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 2.4em;
         }
 
         /* إشعار */
@@ -508,7 +516,7 @@
     </div>
 
     <script>
-        // البيانات
+        // البيانات المعدلة مع الإضافات الجديدة
         const categories = [
             {
                 id: "wake",
@@ -535,6 +543,7 @@
                     { ar: "صندوق أمامي", cn: "打开前备箱", emoji: "🔋" },
                     { ar: "باب الوقود", cn: "打开油箱盖", emoji: "⛽" },
                     { ar: "فتح منفذ الشحن", cn: "打开充电口", emoji: "🔌" },
+                    { ar: "إغلاق منفذ الشحن", cn: "关闭充电口", emoji: "🔒" }, // مضاف
                     { ar: "طوي المرايا", cn: "折叠后视镜", emoji: "↩️" },
                     { ar: "فرد المرايا", cn: "展开后视镜", emoji: "↔️" },
                 ]
@@ -556,6 +565,13 @@
                     { ar: "إيقاف تهوية المقعد", cn: "关闭座椅通风", emoji: "🚫" },
                     { ar: "تدفئة المقود", cn: "打开方向盘加热", emoji: "🎯" },
                     { ar: "إيقاف تدفئة المقود", cn: "关闭方向盘加热", emoji: "🚫" },
+                    // أوامر مقعد الراكب (الجانبي)
+                    { ar: "مساج مقعد الراكب", cn: "打开副驾座椅按摩", emoji: "💆" },
+                    { ar: "إيقاف مساج الراكب", cn: "关闭副驾座椅按摩", emoji: "🛑" },
+                    { ar: "تدفئة مقعد الراكب", cn: "打开副驾座椅加热", emoji: "🔥" },
+                    { ar: "إيقاف تدفئة الراكب", cn: "关闭副驾座椅加热", emoji: "❄️" },
+                    { ar: "تهوية مقعد الراكب", cn: "打开副驾座椅通风", emoji: "🌬️" },
+                    { ar: "إيقاف تهوية الراكب", cn: "关闭副驾座椅通风", emoji: "🚫" },
                 ]
             },
             {
@@ -629,8 +645,11 @@
                     { ar: "تنزيل Ali Cloud", cn: "下载阿里云盘", emoji: "☁️" },
                     { ar: "تنزيل Doubao", cn: "下载豆包", emoji: "🤖" },
                     { ar: "تنزيل iQiyi", cn: "下载爱奇艺", emoji: "🎬" },
-                    { ar: "تنزيل Tencent Video", cn: "下载腾讯视频", emoji: "🎬" },
+                    { ar: "تنزيل Tencent Video", cn: "下载腾讯视频", emoji: "📺" },
                     { ar: "تنزيل Mango TV", cn: "下载芒果TV", emoji: "📺" },
+                    { ar: "تنزيل Bilibili", cn: "下载哔哩哔哩", emoji: "📺" }, // مضاف
+                    { ar: "تنزيل Toutiao", cn: "下载今日头条", emoji: "📰" }, // مضاف
+                    { ar: "تنزيل Youku", cn: "下载优酷", emoji: "🍿" }, // مضاف
                 ]
             }
         ];
