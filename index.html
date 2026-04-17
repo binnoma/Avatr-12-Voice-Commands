@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>أوامر سيارة أفاتر (أوفلاين)</title>
+    <style>
+        /* تعريف المتغيرات والألوان */
+        :root {
+            --blue: #00d4ff;
+            --blue2: #0099ff;
+            --dark: #050a14;
+            --card: rgba(255, 255, 255, 0.08);
+            --border: rgba(0, 212, 255, 0.15);
+            --text: #ffffff;
+            --sub: #8ab4e8;
+            --active: rgba(0, 212, 255, 0.2);
+            --glow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #02040a 0%, #0a1525 50%, #02040a 100%);
+        }
+
+        /* شبكة الخلفية التزيينية */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        /* دوائر ضوئية للخلفية */
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(0, 100, 200, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* هيدر */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(5, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            /* لتحريك مكان أيقونة تيك توك */
+        }
+
+        /* تنسيق أيقونة تيك توك */
+        .tiktok-link {
+            position: absolute;
+            top: -10px;
+            /* رفعها للأعلى */
+            left: -10px;
+            /* يمين العنوان */
+            color: #ff0050;
+            /* لون تيك توك */
+            text-decoration: none;
+            font-size: 1.2rem;
+            animation: tiktok-bounce 2s infinite;
+            z-index: 101;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes tiktok-bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .logo h1 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #00d4ff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .logo p {
+            font-size: 0.7rem;
+            color: var(--sub);
+            margin-top: 4px;
+        }
+
+        .car-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        /* زر التفعيل */
+        .wake-section {
+            padding: 30px 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wake-btn {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 150, 255, 0.1));
+            border: 2px solid var(--blue);
+            color: var(--blue);
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            box-shadow: var(--glow);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .wake-btn:active {
+            transform: scale(0.9);
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        .wake-btn span {
+            font-size: 0.6rem;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .wake-info {
+            text-align: center;
+        }
+
+        .wake-info h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .wake-info p {
+            font-size: 0.8rem;
+            color: var(--sub);
+            margin-top: 4px;
+        }
+
+        /* تبويبات */
+        .tabs-wrapper {
+            padding: 0 16px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            flex-shrink: 0;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 7px 14px;
+            color: var(--sub);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active,
+        .tab-btn:active {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: var(--blue);
+            color: var(--blue);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+        }
+
+        /* المحتوى */
+        .content {
+            padding: 0 16px 110px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-right: 10px;
+            border-right: 3px solid var(--blue);
+        }
+
+        .section-title i {
+            font-style: normal;
+            font-size: 1.2rem;
+        }
+
+        .section-title span {
+            font-size: 0.95rem;
+            font-weight: 900;
+        }
+
+        /* شبكة الأوامر */
+        .cmd-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 400px) {
+            .cmd-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* بطاقة الأمر */
+        .cmd-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 12px 6px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .cmd-card:active {
+            transform: scale(0.92);
+            border-color: var(--blue);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* تصميم الإيموجي كبديل للأيقونة */
+        .cmd-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .cmd-ar {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #e8f4ff;
+            line-height: 1.2;
+        }
+
+        .cmd-cn {
+            font-size: 0.55rem;
+            color: var(--sub);
+            line-height: 1.2;
+        }
+
+        /* إشعار */
+        .toast {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid var(--blue);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--blue);
+            z-index: 500;
+            opacity: 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            max-width: 85vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* فوتر */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 10, 20, 0.98);
+            border-top: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--sub);
+        }
+
+        .heart {
+            color: #ff4757;
+            animation: hb 1.4s infinite;
+        }
+
+        @keyframes hb {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.2)
+            }
+        }
+
+        /* رابط جيت هب */
+        .github-link {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-right: 8px;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .github-link:hover {
+            opacity: 0.8;
+        }
+
+        .name {
+            color: var(--blue);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <!-- هيدر -->
+    <header>
+        <div class="logo">
+            <!-- أيقونة تيك توك -->
+            <a href="https://www.tiktok.com/@smart.cars.uae" target="_blank" class="tiktok-link">🎵</a>
+
+            <h1>🚗 أفاتار</h1>
+            <p>مساعد السيارة الصوتي</p>
+        </div>
+        <div class="car-badge">
+            <span style="font-size:8px; color:#00ff88;">●</span>
+            جاهز
+        </div>
+    </header>
+
+    <!-- زر الاستيقاظ -->
+    <div class="wake-section">
+        <button class="wake-btn" onclick="speakAndToast('嗨，小艺', 'تفعيل المساعد')">
+            <span>🎤</span>
+            <span>تفعيل</span>
+        </button>
+        <div class="wake-info">
+            <h2>اضغط للتحدث مع السيارة</h2>
+            <p>ابدأ دائماً بـ «هي شياو يي»</p>
+        </div>
+    </div>
+
+    <!-- تبويبات -->
+    <div class="tabs-wrapper">
+        <div class="tabs" id="tabs"></div>
+    </div>
+
+    <!-- المحتوى -->
+    <div class="content" id="content"></div>
+
+    <!-- الإشعار -->
+    <div class="toast" id="toast">
+        <span>🔊</span>
+        <span id="toast-text"></span>
+    </div>
+
+    <!-- فوتر -->
+    <div class="footer">
+        <div class="footer-inner">
+            <a href="https://github.com/binnoma" target="_blank" class="github-link">🐱 GitHub</a>
+            صنع ب <span class="heart">♥</span> في الإمارات · <span class="name">@binnoma</span>
+        </div>
+    </div>
+
+    <script>
+        // البيانات
+        const categories = [
+            {
+                id: "wake",
+                title: "التفعيل",
+                icon: "🎤",
+                items: [
+                    { ar: "تفعيل المساعد", cn: "嗨，小艺", emoji: "🎤" },
+                    { ar: "مرحباً", cn: "你好", emoji: "👋" },
+                    { ar: "شكراً", cn: "谢谢", emoji: "👍" },
+                ]
+            },
+            {
+                id: "windows",
+                title: "النوافذ",
+                icon: "🚙",
+                items: [
+                    { ar: "فتح النافذة", cn: "打开车窗", emoji: "⬆️" },
+                    { ar: "غلق النافذة", cn: "关闭车窗", emoji: "⬇️" },
+                    { ar: "فتح الكل", cn: "打开所有车窗", emoji: "🔓" },
+                    { ar: "فتح السقف", cn: "打开天窗", emoji: "☀️" },
+                    { ar: "غلق السقف", cn: "关闭天窗", emoji: "🌥️" },
+                    { ar: "فتح الصندوق", cn: "打开后备箱", emoji: "🧳" },
+                    { ar: "غلق الصندوق", cn: "关闭后备箱", emoji: "🔒" },
+                    { ar: "صندوق أمامي", cn: "打开前备箱", emoji: "🔋" },
+                    { ar: "باب الوقود", cn: "打开油箱盖", emoji: "⛽" },
+                    { ar: "فتح منفذ الشحن", cn: "打开充电口", emoji: "🔌" },
+                    { ar: "طوي المرايا", cn: "折叠后视镜", emoji: "↩️" },
+                    { ar: "فرد المرايا", cn: "展开后视镜", emoji: "↔️" },
+                ]
+            },
+            {
+                id: "seat",
+                title: "المقاعد",
+                icon: "💺",
+                items: [
+                    { ar: "وضع القيلولة", cn: "休息模式", emoji: "🛌" },
+                    { ar: "وضع الجاذبية", cn: "零重力模式", emoji: "👨‍🚀" },
+                    { ar: "تعديل الظهر", cn: "调直座椅", emoji: "🔝" },
+                    { ar: "تشغيل المساج", cn: "打开座椅按摩", emoji: "💆" },
+                    { ar: "إيقاف المساج", cn: "关闭座椅按摩", emoji: "🛑" },
+                    { ar: "تغيير نوع المساج", cn: "切换按摩模式", emoji: "🔄" },
+                    { ar: "تدفئة المقعد", cn: "打开座椅加热", emoji: "🔥" },
+                    { ar: "إيقاف تدفئة المقعد", cn: "关闭座椅加热", emoji: "❄️" },
+                    { ar: "تهوية المقعد", cn: "打开座椅通风", emoji: "🌬️" },
+                    { ar: "إيقاف تهوية المقعد", cn: "关闭座椅通风", emoji: "🚫" },
+                    { ar: "تدفئة المقود", cn: "打开方向盘加热", emoji: "🎯" },
+                    { ar: "إيقاف تدفئة المقود", cn: "关闭方向盘加热", emoji: "🚫" },
+                ]
+            },
+            {
+                id: "climate",
+                title: "المكيف",
+                icon: "❄️",
+                items: [
+                    { ar: "تشغيل المكيف", cn: "打开空调", emoji: "❄️" },
+                    { ar: "إيقاف المكيف", cn: "关闭空调", emoji: "🛑" },
+                    { ar: "20 درجة", cn: "20度", emoji: "20°" },
+                    { ar: "22 درجة", cn: "22度", emoji: "22°" },
+                    { ar: "24 درجة", cn: "24度", emoji: "24°" },
+                    { ar: "26 درجة", cn: "26度", emoji: "26°" },
+                    { ar: "أبرد", cn: "温度低一点", emoji: "🧊" },
+                    { ar: "أدفأ", cn: "温度高一点", emoji: "🔥" },
+                ]
+            },
+            {
+                id: "nav",
+                title: "الملاحة",
+                icon: "🗺️",
+                items: [
+                    { ar: "الذهاب للمنزل", cn: "导航回家", emoji: "🏠" },
+                    { ar: "محطة شحن", cn: "导航到充电站", emoji: "⚡" },
+                    { ar: "بدء الملاحة", cn: "开始导航", emoji: "📍" },
+                    { ar: "إلغاء الملاحة", cn: "结束导航", emoji: "❌" },
+                    { ar: "طريق أسرع", cn: "最快路线", emoji: "⚡" },
+                    { ar: "تجنب السريع", cn: "避开高速", emoji: "🛣️" },
+                ]
+            },
+            {
+                id: "media",
+                title: "الترفيه",
+                icon: "🎵",
+                items: [
+                    { ar: "تشغيل موسيقى", cn: "播放音乐", emoji: "🎶" },
+                    { ar: "إيقاف مؤقت", cn: "暂停", emoji: "⏸️" },
+                    { ar: "المقطع التالي", cn: "下一首", emoji: "⏭️" },
+                    { ar: "السابق", cn: "上一首", emoji: "⏮️" },
+                    { ar: "رفع الصوت", cn: "声音大一点", emoji: "🔊" },
+                    { ar: "تخفيض الصوت", cn: "声音小一点", emoji: "🔉" },
+                    { ar: "كتم الصوت", cn: "静音", emoji: "🔇" },
+                    { ar: "فتح دوين", cn: "打开抖音", emoji: "📱" },
+                    { ar: "تطبيقات أخرى", cn: "打开应用", emoji: "📺" },
+                ]
+            },
+            {
+                id: "lights",
+                title: "الإضاءة",
+                icon: "💡",
+                items: [
+                    { ar: "الإضاءة المحيطة", cn: "打开氛围灯", emoji: "🌈" },
+                    { ar: "إطفاء الإضاءة", cn: "关闭氛围灯", emoji: "🌑" },
+                    { ar: "لون أزرق", cn: "蓝色氛围灯", emoji: "🔵" },
+                    { ar: "لون أبيض", cn: "白色氛围灯", emoji: "⚪" },
+                    { ar: "لون أحمر", cn: "红色氛围灯", emoji: "🔴" },
+                ]
+            },
+            {
+                id: "downloads",
+                title: "تنزيل البرامج",
+                icon: "⬇️",
+                items: [
+                    { ar: "تنزيل Kuake", cn: "下载夸克", emoji: "🌐" },
+                    { ar: "تنزيل AMap", cn: "下载高德地图", emoji: "🗺️" },
+                    { ar: "تنزيل Douyu", cn: "下载斗鱼直播", emoji: "🎮" },
+                    { ar: "تنزيل Xunlei", cn: "下载迅雷", emoji: "⚡" },
+                    { ar: "تنزيل UC Browser", cn: "下载UC浏览器", emoji: "🌐" },
+                    { ar: "تنزيل QQ Browser", cn: "下载QQ浏览器", emoji: "🐧" },
+                    { ar: "تنزيل Tencent Map", cn: "下载腾讯地图", emoji: "🗺️" },
+                    { ar: "تنزيل Ali Cloud", cn: "下载阿里云盘", emoji: "☁️" },
+                    { ar: "تنزيل Doubao", cn: "下载豆包", emoji: "🤖" },
+                    { ar: "تنزيل iQiyi", cn: "下载爱奇艺", emoji: "🎬" },
+                    { ar: "تنزيل Tencent Video", cn: "下载腾讯视频", emoji: "🎬" },
+                    { ar: "تنزيل Mango TV", cn: "下载芒果TV", emoji: "📺" },
+                ]
+            }
+        ];
+
+        // بناء الواجهة
+        const tabsEl = document.getElementById('tabs');
+        const contentEl = document.getElementById('content');
+
+        categories.forEach((cat, idx) => {
+            // تبويب
+            const btn = document.createElement('button');
+            btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+            btn.dataset.id = cat.id;
+            btn.innerHTML = `<span>${cat.icon}</span> ${cat.title}`;
+            btn.onclick = () => switchTab(cat.id);
+            tabsEl.appendChild(btn);
+
+            // قسم
+            const sec = document.createElement('div');
+            sec.className = 'section' + (idx === 0 ? ' active' : '');
+            sec.id = 'sec-' + cat.id;
+
+            const grid = document.createElement('div');
+            grid.className = 'cmd-grid';
+
+            cat.items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'cmd-card';
+                card.innerHTML = `
+            <div class="cmd-icon">${item.emoji}</div>
+            <div class="cmd-ar">${item.ar}</div>
+            <div class="cmd-cn">${item.cn}</div>
+        `;
+                card.onclick = () => speakAndToast(item.cn, item.ar);
+                grid.appendChild(card);
+            });
+
+            sec.appendChild(grid);
+            contentEl.appendChild(sec);
+        });
+
+        function switchTab(id) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelector(`[data-id="${id}"]`).classList.add('active');
+            document.getElementById('sec-' + id).classList.add('active');
+            // تمرير التبويب للعرض
+            document.querySelector(`[data-id="${id}"]`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+
+        // النطق + الإشعار
+        let toastTimer;
+        function speakAndToast(cn, ar) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(cn);
+                u.lang = 'zh-CN';
+                u.rate = 0.9;
+                u.pitch = 1;
+                window.speechSynthesis.speak(u);
+            }
+
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            toastText.textContent = cn + '  ·  ' + ar;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+    </script>
+</body>
+
+</html>
