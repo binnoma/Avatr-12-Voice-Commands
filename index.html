@@ -2,18 +2,18 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- 1. اسم المشروع بالإنجليزية -->
+    <!-- اسم المشروع بالإنجليزية لظهوره في الشاشة الرئيسية -->
     <title>Avatr Voice Assistant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- 2. إعدادات إضافة الموقع للشاشة الرئيسية -->
+    <!-- إعدادات إضافة الموقع للشاشة الرئيسية -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Avatr Voice">
     <meta name="application-name" content="Avatr Voice">
     <meta name="theme-color" content="#050a14">
     
-    <!-- 3. أيقونة التطبيق -->
+    <!-- أيقونة التطبيق -->
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%2300d4ff'/%3E%3Cpath d='M256 368c-44.2 0-80-35.8-80-80 0-23.3 9.3-44.5 24.4-60.1l-11.3 11.3C112 316 112 272 112 224c0-88.4 71.6-160 160-160 11.4 0 22.4 1.2 33.1 3.3l-33.1-3.3-33.1 3.3c10.7-2.1 21.7-3.3 33.1-3.3 44.2 0 80 35.8 80 80 0 23.3-9.3 44.5-24.4 60.1l11.3-11.3c52.7 23.4 52.7 52 52.7 100 0 88.4-71.6 160-160 160-11.4 0-22.4-1.2-33.1-3.3l33.1-3.3 33.1 3.3c-10.7 2.1-21.7 3.3-33.1 3.3z' fill='%23ffffff'/%3E%3Ccircle cx='200' cy='200' r='30' fill='%23ffffff'/%3E%3Ccircle cx='312' cy='200' r='30' fill='%23ffffff'/%3E%3Cpath d='M220 270h72' stroke='%23ffffff' stroke-width='20' stroke-linecap='round'/%3E%3C/svg%3E">
 
     <style>
@@ -38,6 +38,7 @@
             color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
+            /* خلفية CSS بالكامل (بدون صور خارجية) */
             background: linear-gradient(135deg, #02040a 0%, #0a1525 50%, #02040a 100%);
         }
 
@@ -81,15 +82,15 @@
         .logo {
             display: flex;
             flex-direction: column;
-            position: relative; 
+            position: relative;
         }
 
-        /* تنسيق أيقونة تيك توك */
+        /* أيقونة تيك توك */
         .tiktok-link {
             position: absolute;
-            top: -10px; 
-            left: -10px; 
-            color: #ff0050; 
+            top: -10px;
+            left: -10px;
+            color: #ff0050;
             text-decoration: none;
             font-size: 1.2rem;
             animation: tiktok-bounce 2s infinite;
@@ -123,6 +124,19 @@
             margin-top: 4px;
         }
 
+        .car-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            color: var(--blue);
+            font-weight: 700;
+        }
+
         /* زر تبديل اللغة */
         .lang-switch {
             background: var(--card);
@@ -143,19 +157,6 @@
             transform: scale(0.95);
         }
 
-        .car-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 5px 12px;
-            font-size: 0.7rem;
-            color: var(--blue);
-            font-weight: 700;
-        }
-
         /* زر التفعيل */
         .wake-section {
             padding: 30px 20px 10px;
@@ -167,6 +168,7 @@
             z-index: 1;
         }
 
+        /* تصميم جديد لزر التفعيل ليكون كأيقونة المساعد */
         .wake-btn {
             width: 130px;
             height: 130px;
@@ -319,7 +321,7 @@
             background: rgba(0,212,255,0.1);
         }
 
-        /* تصميم الإيموجي */
+        /* تصميم الإيموجي كبديل للأيقونة */
         .cmd-icon {
             width: 45px;
             height: 45px;
@@ -334,7 +336,7 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        .cmd-ar { /* سيستخدم للنص العربي والإنجليزي */
+        .cmd-ar {
             font-size: 0.75rem;
             font-weight: 700;
             color: #e8f4ff;
@@ -342,7 +344,7 @@
         }
 
         .cmd-cn {
-            font-size: 0.5rem;
+            font-size: 0.55rem;
             color: var(--sub);
             line-height: 1.2;
             display: -webkit-box;
@@ -441,7 +443,6 @@
         <h1 id="page-title">🚗 أفاتار</h1>
         <p id="page-subtitle">مساعد السيارة الصوتي</p>
     </div>
-    
     <div style="display: flex; align-items: center; gap: 10px;">
         <button class="lang-switch" id="lang-btn" onclick="toggleLanguage()">
             <span>🌐</span> <span id="lang-text">English</span>
@@ -455,15 +456,16 @@
 
 <!-- زر الاستيقاظ -->
 <div class="wake-section">
+    <!-- أيقونة SVG مساعد ذكي -->
     <button class="wake-btn" onclick="speakAndToast('嗨，小艺，小艺')">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8 8-8 3.59-8 8-8zm-5-6c.83 0 1.5.67 1.5 1.5s-.67-1.5-1.5-1.5S6.67 5 7.5 5 8 5.67-1.5 1.5-1.5-.67 1.5-1.5 1.5zM12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-4-6c.83 0 1.5.67 1.5 1.5s-.67-1.5-1.5-1.5S8.67 7 9.5 7 10 7.67-1.5 1.5-1.5-.67 1.5-1.5z"/>
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-8 8-8zm-5-6c.83 0 1.5.67 1.5 1.5s-.67-1.5-1.5-1.5S6.67 5 7.5 5 8 5.67-1.5 1.5-1.5-.67 1.5-1.5zM12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2 2-.9 2-2 2-.9-2 2zm-4-6c.83 0 1.5.67 1.5 1.5s-.67-1.5-1.5-1.5S8.67 7 9.5 7 10 7.67-1.5 1.5-1.5-.67 1.5-1.5zM12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2 2zm-4-6c.83 0 1.5.67 1.5 1.5s-.67-1.5-1.5-1.5S8.67 7 9.5 7 10 7.67-1.5 1.5-1.5-.67 1.5-1.5z"/>
         </svg>
         <span id="wake-text">تفعيل</span>
     </button>
     <div class="wake-info">
         <h2 id="info-title">اضغط للتحدث مع السيارة</h2>
-        <p id="info-desc">ابدأ دائماً بـ «هي شياو يي»</p>
+        <p id="info-desc">سيعاد النظام "هي شياو يي، شياو يي" مرتين للتعرف السريع</p>
     </div>
 </div>
 
@@ -484,7 +486,7 @@
 <!-- فوتر -->
 <div class="footer">
     <div class="footer-inner">
-        <a href="https://github.com/binnoma" target="_blank" class="github-link">🐱 GitHub</a>
+        <a href="https://github.com/binnoma" target="_blank" class="github-link" style="color: #fff; text-decoration: none; display: flex; align-items: center; gap: 4px; margin-right: 8px; font-weight: bold;">🐱 GitHub</a>
         <span id="footer-love">صنع ب</span> <span class="heart">♥</span> <span id="footer-loc">في الإمارات</span> · <span class="name">@binnoma</span>
     </div>
 </div>
@@ -493,7 +495,7 @@
 // إعداد اللغة الحالية
 let currentLang = 'ar'; // 'ar' or 'en'
 
-// نصوص الواجهة (ترجمة ثابتة)
+// نصوص الواجهة
 const uiText = {
     ar: {
         title: "أوامر السيارة أفاتر",
@@ -517,7 +519,7 @@ const uiText = {
     }
 };
 
-// البيانات مع الترجمات المزدوجة
+// البيانات كاملة ومفصلة بالكامل
 const categories = [
     {
         id: "wake",
@@ -531,24 +533,41 @@ const categories = [
         ]
     },
     {
+        id: "doors",
+        title: "الأبواب",
+        title_en: "Doors",
+        icon: "🚪",
+        items: [
+            { ar: "فتح باب السائق", en: "Unlock Driver", cn: "解锁主驾车门", emoji: "🚘" },
+            { ar: "قفل باب السائق", en: "Lock Driver", cn: "锁住主驾车门", emoji: "🔒" },
+            { ar: "فتح باب الراكب", en: "Unlock Co-pilot", cn: "解锁副驾车门", emoji: "🚘" },
+            { ar: "قفل باب الراكب", en: "Lock Co-pilot", cn: "锁住副驾车门", emoji: "🔒" },
+            { ar: "فتح الكل", en: "Unlock All", cn: "解锁所有车门", emoji: "🔓" },
+            { ar: "قفل الكل", en: "Lock All", cn: "锁上所有车门", emoji: "🔒" },
+            { ar: "فتح الصندوق", en: "Open Trunk", cn: "打开后备箱", emoji: "🧳" },
+            { ar: "غلق الصندوق", en: "Close Trunk", cn: "关闭后备箱", emoji: "🔒" },
+        ]
+    },
+    {
         id: "windows",
         title: "النوافذ",
         title_en: "Windows",
-        icon: "🚙",
+        icon: "🪟",
         items: [
-            { ar: "فتح النافذة", en: "Open Window", cn: "打开车窗", emoji: "⬆️" },
-            { ar: "غلق النافذة", en: "Close Window", cn: "关闭车窗", emoji: "⬇️" },
+            { ar: "نافذة السائق", en: "Driver Win", cn: "打开主驾车窗", emoji: "🪟" },
+            { ar: "نافذة الراكب", en: "Co-pilot Win", cn: "打开副驾车窗", emoji: "🪟" },
+            { ar: "نافذة خلفي يسرع", en: "Rear Left Win", cn: "打开后左车窗", emoji: "🪟" },
+            { ar: "نافذة خلفي يمين", en: "Rear Right Win", cn: "打开后右车窗", emoji: "🪟" },
             { ar: "فتح الكل", en: "Open All", cn: "打开所有车窗", emoji: "🔓" },
+            { ar: "غلق الكل", en: "Close All", cn: "关闭所有车窗", emoji: "🔻" },
             { ar: "فتح السقف", en: "Open Roof", cn: "打开天窗", emoji: "☀️" },
-            { ar: "غلق السقف", en: "Close Roof", cn: "关闭天窗", emoji: "🌥️" },
-            { ar: "فتح الصندوق", en: "Open Trunk", cn: "打开后备箱", emoji: "🧳" },
-            { ar: "غلق الصندوق", en: "Close Trunk", cn: "关闭后备箱", emoji: "🔒" },
+            { ar: "غلق السقف", en: "Close Roof", cn: "关闭天窗", emoji: "🌥" },
             { ar: "صندوق أمامي", en: "Frunk", cn: "打开前备箱", emoji: "🔋" },
             { ar: "باب الوقود", en: "Fuel Cap", cn: "打开油箱盖", emoji: "⛽" },
-            { ar: "فتح منفذ الشحن", en: "Charging Port", cn: "打开充电口", emoji: "🔌" },
+            { ar: "فتح منفذ الشحن", en: "Open Port", cn: "打开充电口", emoji: "🔌" },
             { ar: "إغلاق منفذ الشحن", en: "Close Port", cn: "关闭充电口", emoji: "🔒" },
-            { ar: "طوي المرايا", en: "Fold Mirrors", cn: "折叠后视镜", emoji: "↩️" },
-            { ar: "فرد المرايا", en: "Unfold Mirrors", cn: "展开后视镜", emoji: "↔️" },
+            { ar: "طوي المرايا", en: "Fold Mirrors", cn: "折叠后视镜", emoji: "🔙" },
+            { ar: "فرد المرايا", en: "Unfold Mirrors", cn: "展开后视镜", emoji: "🔛" },
         ]
     },
     {
@@ -557,25 +576,47 @@ const categories = [
         title_en: "Seats",
         icon: "💺",
         items: [
-            { ar: "وضع القيلولة", en: "Nap Mode", cn: "休息模式", emoji: "🛌" },
+            // عامة
+            { ar: "وضع القيلولة", en: "Nap Mode", cn: "休息模式", emoji: "💺" },
             { ar: "وضع الجاذبية", en: "Zero Gravity", cn: "零重力模式", emoji: "👨‍🚀" },
-            { ar: "تعديل الظهر", en: "Adjust Back", cn: "调直座椅", emoji: "🔝" },
-            { ar: "تشغيل المساج", en: "Massage On", cn: "打开座椅按摩", emoji: "💆" },
-            { ar: "إيقاف المساج", en: "Massage Off", cn: "关闭座椅按摩", emoji: "🛑" },
+            { ar: "تعديل الظهر", en: "Adjust Back", cn: "调直座椅", emoji: "🔧" },
             { ar: "تغيير نوع المساج", en: "Change Mode", cn: "切换按摩模式", emoji: "🔄" },
-            { ar: "تدفئة المقعد", en: "Seat Heat", cn: "打开座椅加热", emoji: "🔥" },
-            { ar: "إيقاف تدفئة المقعد", en: "Seat Heat Off", cn: "关闭座椅加热", emoji: "❄️" },
-            { ar: "تهوية المقعد", en: "Seat Vent", cn: "打开座椅通风", emoji: "🌬️" },
-            { ar: "إيقاف تهوية المقعد", en: "Seat Vent Off", cn: "关闭座椅通风", emoji: "🚫" },
-            { ar: "تدفئة المقود", en: "Wheel Heat", cn: "打开方向盘加热", emoji: "🎯" },
-            { ar: "إيقاف تدفئة المقود", en: "Wheel Heat Off", cn: "关闭方向盘加热", emoji: "🚫" },
-            // مقعد الراكب
-            { ar: "مساج مقعد الراكب", en: "Co-Pilot Massage", cn: "打开副驾座椅按摩", emoji: "💆" },
-            { ar: "إيقاف مساج الراكب", en: "Co-Pilot Massage Off", cn: "关闭副驾座椅按摩", emoji: "🛑" },
-            { ar: "تدفئة مقعد الراكب", en: "Co-Pilot Heat", cn: "打开副驾座椅加热", emoji: "🔥" },
-            { ar: "إيقاف تدفئة الراكب", en: "Co-Pilot Heat Off", cn: "关闭副驾座椅加热", emoji: "❄️" },
-            { ar: "تهوية مقعد الراكب", en: "Co-Pilot Vent", cn: "打开副驾座椅通风", emoji: "🌬️" },
-            { ar: "إيقاف تهوية الراكب", en: "Co-Pilot Vent Off", cn: "关闭副驾座椅通风", emoji: "🚫" },
+
+            // السائق (Driver)
+            { ar: "مساج السائق", en: "Driver Massage", cn: "打开主驾按摩", emoji: "💆" },
+            { ar: "إيقاف مساج السائق", en: "Stop Driver", cn: "关闭主驾按摩", emoji: "🛑" },
+            { ar: "تدفئة السائق", en: "Driver Heat", cn: "打开主驾加热", emoji: "🔥" },
+            { ar: "إيقاف تدفئة السائق", en: "Stop Driver Heat", cn: "关闭主驾加热", emoji: "❄️" },
+            { ar: "تهوية السائق", en: "Driver Vent", cn: "打开主驾通风", emoji: "🌬️" },
+            { ar: "إيقاف تهوية السائق", en: "Stop Driver Vent", cn: "关闭主驾通风", emoji: "🚫" },
+
+            // الراكب (Co-pilot)
+            { ar: "مساج الراكب", en: "Co-pilot Massage", cn: "打开副驾按摩", emoji: "💆" },
+            { ar: "إيقاف مساج الراكب", en: "Stop Co-pilot", cn: "关闭副驾按摩", emoji: "🛑" },
+            { ar: "تدفئة الراكب", en: "Co-pilot Heat", cn: "打开副驾加热", emoji: "🔥" },
+            { ar: "إيقاف تدفئة الراكب", en: "Stop Co-pilot Heat", cn: "关闭副驾加热", emoji: "❄️" },
+            { ar: "تهوية الراكب", en: "Co-pilot Vent", cn: "打开副驾通风", emoji: "🌬️" },
+            { ar: "إيقاف تهوية الراكب", en: "Stop Co-pilot Vent", cn: "关闭副驾通风", emoji: "🚫" },
+
+            // خلفي أيسر (Rear Left)
+            { ar: "مساج خلفي أيسر", en: "Rear Left Massage", cn: "打开左后按摩", emoji: "💆" },
+            { ar: "إيقاف مساج خلفي", en: "Stop Rear Left", cn: "关闭左后按摩", emoji: "🛑" },
+            { ar: "تدفئة خلفي أيسر", en: "Rear Left Heat", cn: "打开左后加热", emoji: "🔥" },
+            { ar: "إيقاف تدفئة خلفي", en: "Stop Rear Left", emoji: "❄️" },
+            { ar: "تهوية خلفي أيسر", en: "Rear Left Vent", cn: "打开左后通风", emoji: "🌬️" },
+            { ar: "إيقاف تهوية خلفي", en: "Stop Rear Left Vent", emoji: "🚫" },
+
+            // خلفي يمين (Rear Right)
+            { ar: "مساج خلفي أيمن", en: "Rear Right Massage", cn: "打开右后按摩", emoji: "💆" },
+            { ar: "إيقاف مساج خلفي", en: "Stop Rear Right", cn: "关闭右后按摩", emoji: "🛑" },
+            { ar: "تدفئة خلفي أيمن", en: "Rear Right Heat", cn: "打开右后加热", emoji: "🔥" },
+            { ar: "إيقاف تدفئة خلفي", en: "Stop Rear Right Heat", cn: "关闭右后加热", emoji: "❄️" },
+            { ar: "تهوية خلفي أيمن", en: "Rear Right Vent", cn: "打开右后通风", emoji: "🌬️" },
+            { ar: "إيقاف تهوية خلفي", en: "Stop Rear Right Vent", cn: "关闭右后通风", emoji: "🚫" },
+
+            // المقود
+            { ar: "تدفئة المقود", en: "Steering Heat", cn: "打开方向盘加热", emoji: "🎯" },
+            { ar: "إيقاف تدفئة المقود", en: "Stop Steering Heat", cn: "关闭方向盘加热", emoji: "🚫" },
         ]
     },
     {
@@ -601,11 +642,11 @@ const categories = [
         icon: "🗺️",
         items: [
             { ar: "الذهاب للمنزل", en: "Go Home", cn: "导航回家", emoji: "🏠" },
-            { ar: "محطة شحن", en: "Charging Stn", cn: "导航到充电站", emoji: "⚡" },
+            { ar: "محطة شحن", en: "Charging Station", cn: "导航到充电站", emoji: "⚡" },
             { ar: "بدء الملاحة", en: "Start Nav", cn: "开始导航", emoji: "📍" },
             { ar: "إلغاء الملاحة", en: "Stop Nav", cn: "结束导航", emoji: "❌" },
-            { ar: "طريق أسرع", en: "Fastest", cn: "最快路线", emoji: "⚡" },
-            { ar: "تجنب السريع", en: "Avoid Hwy", cn: "避开高速", emoji: "🛣️" },
+            { ar: "طريق أسرع", en: "Fastest Route", cn: "最快路线", emoji: "⚡" },
+            { ar: "تجنب السريع", en: "Avoid Highway", cn: "避开高速", emoji: "🛣️" },
         ]
     },
     {
@@ -617,7 +658,7 @@ const categories = [
             { ar: "تشغيل موسيقى", en: "Play Music", cn: "播放音乐", emoji: "🎶" },
             { ar: "إيقاف مؤقت", en: "Pause", cn: "暂停", emoji: "⏸️" },
             { ar: "المقطع التالي", en: "Next", cn: "下一首", emoji: "⏭️" },
-            { ar: "السابق", en: "Prev", cn: "上一首", emoji: "⏮️" },
+            { ar: "السابق", en: "Previous", cn: "上一首", emoji: "⏮️" },
             { ar: "رفع الصوت", en: "Vol Up", cn: "声音大一点", emoji: "🔊" },
             { ar: "تخفيض الصوت", en: "Vol Down", cn: "声音小一点", emoji: "🔉" },
             { ar: "كتم الصوت", en: "Mute", cn: "静音", emoji: "🔇" },
@@ -633,9 +674,9 @@ const categories = [
         items: [
             { ar: "الإضاءة المحيطة", en: "Ambient Light", cn: "打开氛围灯", emoji: "🌈" },
             { ar: "إطفاء الإضاءة", en: "Lights Off", cn: "关闭氛围灯", emoji: "🌑" },
-            { ar: "لون أزرق", en: "Blue Light", cn: "蓝色氛围灯", emoji: "🔵" },
-            { ar: "لون أبيض", en: "White Light", cn: "白色氛围灯", emoji: "⚪" },
-            { ar: "لون أحمر", en: "Red Light", cn: "红色氛围灯", emoji: "🔴" },
+            { ar: "لون أزرق", en: "Blue", cn: "蓝色氛围灯", emoji: "🔵" },
+            { ar: "لون أبيض", en: "White", cn: "白色氛围灯", emoji: "⚪" },
+            { ar: "لون أحمر", en: "Red", cn: "红色氛围灯", emoji: "🔴" },
         ]
     },
     {
@@ -645,12 +686,12 @@ const categories = [
         icon: "⬇️",
         items: [
             { ar: "تنزيل Kuake", en: "Down Kuake", cn: "下载夸克", emoji: "🌐" },
-            { ar: "تنزيل AMap", en: "Down AMap", cn: "下载高德地图", emoji: "🗺️" },
+            { ar: "تنزيل AMap", en: "Down AMap", cn: "下载高德地图", emoji: "🗺" },
             { ar: "تنزيل Douyu", en: "Down Douyu", cn: "下载斗鱼直播", emoji: "🎮" },
             { ar: "تنزيل Xunlei", en: "Down Xunlei", cn: "下载迅雷", emoji: "⚡" },
             { ar: "تنزيل UC Browser", en: "Down UC", cn: "下载UC浏览器", emoji: "🌐" },
             { ar: "تنزيل QQ Browser", en: "Down QQ", cn: "下载QQ浏览器", emoji: "🐧" },
-            { ar: "تنزيل Tencent Map", en: "Down Tencent", cn: "下载腾讯地图", emoji: "🗺️" },
+            { ar: "تنزيل Tencent Map", en: "Down Tencent", cn: "下载腾讯地图", emoji: "🗺" },
             { ar: "تنزيل Ali Cloud", en: "Down AliCloud", cn: "下载阿里云盘", emoji: "☁️" },
             { ar: "تنزيل Doubao", en: "Down Doubao", cn: "下载豆包", emoji: "🤖" },
             { ar: "تنزيل iQiyi", en: "Down iQiyi", cn: "下载爱奇艺", emoji: "🎬" },
@@ -663,16 +704,70 @@ const categories = [
     }
 ];
 
-// دالة تبديل اللغة
+// بناء الواجهة
+const tabsEl = document.getElementById('tabs');
+const contentEl = document.getElementById('content');
+
+categories.forEach((cat, idx) => {
+    // تبويب
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
+    btn.dataset.id = cat.id;
+    // اختيار العنوان بناءً على اللغة
+    const titleToShow = currentLang === 'ar' ? cat.title : cat.title_en;
+    btn.innerHTML = `<span>${cat.icon}</span> ${titleToShow}`;
+    btn.onclick = () => switchTab(cat.id);
+    tabsEl.appendChild(btn);
+
+    // قسم
+    const sec = document.createElement('div');
+    sec.className = 'section' + (idx === 0 ? ' active' : '');
+    sec.id = 'sec-' + cat.id;
+
+    const grid = document.createElement('div');
+    grid.className = 'cmd-grid';
+
+    cat.items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'cmd-card';
+        // اختيار النص بناءً على اللغة
+        const textToShow = currentLang === 'ar' ? item.ar : item.en;
+        
+        card.innerHTML = `
+            <div class="cmd-icon">${item.emoji}</div>
+            <div class="cmd-ar">${textToShow}</div>
+            <div class="cmd-cn">${item.cn}</div>
+        `;
+        card.onclick = () => speakAndToast(item.cn, textToShow);
+        grid.appendChild(card);
+    });
+
+    sec.appendChild(grid);
+    contentEl.appendChild(sec);
+});
+
+function switchTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelector(`[data-id="${id}"]`).classList.add('active');
+    document.getElementById('sec-' + id).classList.add('active');
+    // تمرير التبويب للعرض
+    const activeBtn = document.querySelector(`[data-id="${id}"]`);
+    if(activeBtn) {
+        activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+}
+
+// تبديل اللغة
 function toggleLanguage() {
     currentLang = currentLang === 'ar' ? 'en' : 'ar';
-    document.getElementById('lang-text').innerText = currentLang === 'ar' ? 'English' : 'عربي';
+    document.getElementById('lang-text').innerText = currentLang === 'ar' ? 'عربي' : 'English';
     
     // تغيير اتجاه الصفحة (RTL/LTR)
     document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
     
     // تحديث النصوص الثابتة
-    document.getElementById('page-title').innerText = (currentLang === 'ar' ? '🚗 أفاتار' : '🚗 Avatr') + (currentLang === 'ar' ? '' : ' Voice Assistant');
+    document.getElementById('page-title').innerText = (currentLang === 'ar' ? '🚗 أفاتار' : '🚗 Avatr Voice');
     document.getElementById('page-subtitle').innerText = uiText[currentLang].subtitle;
     document.getElementById('status-text').innerText = uiText[currentLang].status;
     document.getElementById('wake-text').innerText = uiText[currentLang].wakeBtn;
@@ -685,7 +780,6 @@ function toggleLanguage() {
     renderContent();
 }
 
-// دالة رسم المحتوى
 function renderContent() {
     const tabsEl = document.getElementById('tabs');
     const contentEl = document.getElementById('content');
@@ -699,7 +793,7 @@ function renderContent() {
         const btn = document.createElement('button');
         btn.className = 'tab-btn' + (idx === 0 ? ' active' : '');
         btn.dataset.id = cat.id;
-        // اختيار العنوان بناءً على اللغة
+        
         const titleToShow = currentLang === 'ar' ? cat.title : cat.title_en;
         btn.innerHTML = `<span>${cat.icon}</span> ${titleToShow}`;
         btn.onclick = () => switchTab(cat.id);
@@ -716,9 +810,10 @@ function renderContent() {
         cat.items.forEach(item => {
             const card = document.createElement('div');
             card.className = 'cmd-card';
+            
             // اختيار النص بناءً على اللغة
             const textToShow = currentLang === 'ar' ? item.ar : item.en;
-            
+
             card.innerHTML = `
                 <div class="cmd-icon">${item.emoji}</div>
                 <div class="cmd-ar">${textToShow}</div>
@@ -731,18 +826,6 @@ function renderContent() {
         sec.appendChild(grid);
         contentEl.appendChild(sec);
     });
-}
-
-// دالة التبويب
-function switchTab(id) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    const btn = document.querySelector(`[data-id="${id}"]`);
-    if(btn) btn.classList.add('active');
-    document.getElementById('sec-' + id).classList.add('active');
-    
-    // تمرير التبويب للعرض
-    if(btn) btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
 // النطق + الإشعار
@@ -759,7 +842,6 @@ function speakAndToast(cn, arOrEn) {
 
     const toast = document.getElementById('toast');
     const toastText = document.getElementById('toast-text');
-    // إظهار النصين في الإشعار
     toastText.textContent = cn + '  ·  ' + arOrEn;
     toast.classList.add('show');
     clearTimeout(toastTimer);
@@ -768,6 +850,17 @@ function speakAndToast(cn, arOrEn) {
 
 // تشغيل أولي
 renderContent();
+
+// عداد الزوار (شبيهي)
+let visitCount = localStorage.getItem('avatr_visits');
+if (!visitCount) {
+    visitCount = 1;
+} else {
+    visitCount = parseInt(visitCount) + 1;
+}
+localStorage.setItem('avatr_visits', visitCount);
+
+document.getElementById('visitCount').innerText = visitCount.toLocaleString();
 </script>
 </body>
 </html>
