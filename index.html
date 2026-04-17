@@ -3,8 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- 1. اسم المشروع بالإنجليزية للظهور في الشاشة الرئيسية -->
+    <title>Avatr Voice Assistant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>أوامر سيارة أفاتر (أوفلاين)</title>
+
+    <!-- 2. إعدادات إضافة الموقع للشاشة الرئيسية (PWA) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Avatr Voice Assistant">
+    <meta name="application-name" content="Avatr Voice Assistant">
+    <meta name="theme-color" content="#050a14">
+
+    <!-- 3. أيقونة التطبيق عند الإضافة للشاشة الرئيسية (SVG مدمج) -->
+    <!-- iOS -->
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%2300d4ff'/%3E%3Cpath d='M256 368c-44.2 0-80-35.8-80-80 0-23.3 9.3-44.5 24.4-60.1l-11.3 11.3C112 316 112 272 112 224c0-88.4 71.6-160 160-160 11.4 0 22.4 1.2 33.1 3.3l-33.1-3.3-33.1 3.3c10.7-2.1 21.7-3.3 33.1-3.3 44.2 0 80 35.8 80 80 0 23.3-9.3 44.5-24.4 60.1l11.3-11.3c52.7 23.4 52.7 52 52.7 100 0 88.4-71.6 160-160 160-11.4 0-22.4-1.2-33.1-3.3l33.1-3.3 33.1 3.3c-10.7 2.1-21.7 3.3-33.1 3.3z' fill='%23ffffff'/%3E%3Ccircle cx='200' cy='200' r='30' fill='%23ffffff'/%3E%3Ccircle cx='312' cy='200' r='30' fill='%23ffffff'/%3E%3Cpath d='M220 270h72' stroke='%23ffffff' stroke-width='20' stroke-linecap='round'/%3E%3C/svg%3E">
+
     <style>
         /* تعريف المتغيرات والألوان */
         :root {
@@ -83,11 +97,8 @@
         .tiktok-link {
             position: absolute;
             top: -10px;
-            /* رفعها للأعلى */
             left: -10px;
-            /* يمين العنوان */
             color: #ff0050;
-            /* لون تيك توك */
             text-decoration: none;
             font-size: 1.2rem;
             animation: tiktok-bounce 2s infinite;
@@ -152,35 +163,45 @@
             z-index: 1;
         }
 
+        /* تصميم جديد لزر التفعيل ليكون كأيقونة المساعد */
         .wake-btn {
-            width: 95px;
-            height: 95px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 150, 255, 0.1));
-            border: 2px solid var(--blue);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 150, 255, 0.2));
+            border: 3px solid var(--blue);
             color: var(--blue);
-            font-size: 2rem;
+            font-size: 3rem;
+            /* تكبير الأيقونة */
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            box-shadow: var(--glow);
+            gap: 5px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4), inset 0 0 20px rgba(0, 212, 255, 0.05);
             transition: all 0.2s ease;
             position: relative;
         }
 
         .wake-btn:active {
             transform: scale(0.9);
-            background: rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.25);
+        }
+
+        .wake-btn svg {
+            width: 50px;
+            height: 50px;
+            fill: var(--blue);
+            filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
         }
 
         .wake-btn span {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             color: white;
             font-weight: 700;
             letter-spacing: 0.5px;
+            margin-top: 5px;
         }
 
         .wake-info {
@@ -340,8 +361,10 @@
             align-items: center;
             justify-content: center;
             font-size: 1.6rem;
+            /* حجم الإيموجي */
             line-height: 1;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            /* ظل للإيموجي */
         }
 
         .cmd-ar {
@@ -363,6 +386,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             max-height: 2.4em;
+            /* تحديد ارتفاع النص الصيني */
         }
 
         /* إشعار */
@@ -438,22 +462,6 @@
             }
         }
 
-        /* رابط جيت هب */
-        .github-link {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-right: 8px;
-            font-weight: bold;
-            transition: opacity 0.2s;
-        }
-
-        .github-link:hover {
-            opacity: 0.8;
-        }
-
         .name {
             color: var(--blue);
             font-weight: bold;
@@ -483,13 +491,17 @@
 
     <!-- زر الاستيقاظ -->
     <div class="wake-section">
-        <button class="wake-btn" onclick="speakAndToast('嗨，小艺', 'تفعيل المساعد')">
-            <span>🎤</span>
+        <!-- أيقونة SVG مساعد ذكي داخل الزر -->
+        <button class="wake-btn" onclick="speakAndToast('嗨，小艺，小艺', 'تفعيل المساعد')">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-8 3.59-8 8-8zm-5-6c.83 0 1.5.67 1.5 1.5s-.67-1.5-1.5-1.5S6.67 5 7.5 5 8 5.67-1.5 1.5-1.5-.67 1.5-1.5zM12 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-4-6c.83 0 1.5.67 1.5 1.5s-.67-1.5-1.5-1.5S8.67 7 9.5 7 10 7.67-1.5 1.5-1.5-.67 1.5-1.5z" />
+            </svg>
             <span>تفعيل</span>
         </button>
         <div class="wake-info">
             <h2>اضغط للتحدث مع السيارة</h2>
-            <p>ابدأ دائماً بـ «هي شياو يي»</p>
+            <p>سيعاد النظام "هي شياو يي" مرتين للاعتراف السريع</p>
         </div>
     </div>
 
@@ -510,20 +522,22 @@
     <!-- فوتر -->
     <div class="footer">
         <div class="footer-inner">
-            <a href="https://github.com/binnoma" target="_blank" class="github-link">🐱 GitHub</a>
+            <a href="https://github.com/binnoma" target="_blank" class="github-link"
+                style="color: #fff; text-decoration: none; display: flex; align-items: center; gap: 4px; margin-right: 8px; font-weight: bold;">🐱
+                GitHub</a>
             صنع ب <span class="heart">♥</span> في الإمارات · <span class="name">@binnoma</span>
         </div>
     </div>
 
     <script>
-        // البيانات المعدلة مع الإضافات الجديدة
+        // البيانات
         const categories = [
             {
                 id: "wake",
                 title: "التفعيل",
                 icon: "🎤",
                 items: [
-                    { ar: "تفعيل المساعد", cn: "嗨，小艺", emoji: "🎤" },
+                    { ar: "تفعيل المساعد", cn: "嗨，小艺，小艺", emoji: "🎤" },
                     { ar: "مرحباً", cn: "你好", emoji: "👋" },
                     { ar: "شكراً", cn: "谢谢", emoji: "👍" },
                 ]
@@ -543,7 +557,7 @@
                     { ar: "صندوق أمامي", cn: "打开前备箱", emoji: "🔋" },
                     { ar: "باب الوقود", cn: "打开油箱盖", emoji: "⛽" },
                     { ar: "فتح منفذ الشحن", cn: "打开充电口", emoji: "🔌" },
-                    { ar: "إغلاق منفذ الشحن", cn: "关闭充电口", emoji: "🔒" }, // مضاف
+                    { ar: "إغلاق منفذ الشحن", cn: "关闭充电口", emoji: "🔒" },
                     { ar: "طوي المرايا", cn: "折叠后视镜", emoji: "↩️" },
                     { ar: "فرد المرايا", cn: "展开后视镜", emoji: "↔️" },
                 ]
@@ -647,9 +661,9 @@
                     { ar: "تنزيل iQiyi", cn: "下载爱奇艺", emoji: "🎬" },
                     { ar: "تنزيل Tencent Video", cn: "下载腾讯视频", emoji: "📺" },
                     { ar: "تنزيل Mango TV", cn: "下载芒果TV", emoji: "📺" },
-                    { ar: "تنزيل Bilibili", cn: "下载哔哩哔哩", emoji: "📺" }, // مضاف
-                    { ar: "تنزيل Toutiao", cn: "下载今日头条", emoji: "📰" }, // مضاف
-                    { ar: "تنزيل Youku", cn: "下载优酷", emoji: "🍿" }, // مضاف
+                    { ar: "تنزيل Bilibili", cn: "下载哔哩哔哩", emoji: "📺" },
+                    { ar: "تنزيل Toutiao", cn: "下载今日头条", emoji: "📰" },
+                    { ar: "تنزيل Youku", cn: "下载优酷", emoji: "🍿" },
                 ]
             }
         ];
