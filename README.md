@@ -1,72 +1,235 @@
-# 🚗 Avatr 12 Assist | مساعد أفاتار الذكي
+# 🚗 Avatr Voice Assistant
 
-[Arabic Version Below](#arabic-version)
+<div align="center">
 
-A high-performance, interactive Web Dashboard designed for **Avatr 12** owners. This tool enables voice control using Chinese commands compatible with the Huawei HarmonyOS system integrated into the car.
+![Avatr](https://img.shields.io/badge/Avatr-VoiceAssistant-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-iOS%20%2F%20Android-orange?style=for-the-badge)
 
-## ✨ New Features
-*   🌍 **Bilingual Support**: Full interface support for both **Arabic** and **English**.
-*   📱 **PWA Support**: Can be added to the Home Screen to function as a standalone app.
-*   🎤 **Smart Wake-up**: The "Hi Xiaoyi" wake word is repeated twice programmatically for instant recognition.
-*   🚀 **Offline-First**: Designed to work entirely without an internet connection.
-*   🎨 **Modern UI**: Features a sleek glassmorphism design with responsive elements for driving safety.
-*   🔊 **Text-to-Speech**: Built-in technology that speaks Chinese commands instantly upon clicking.
+</div>
 
 ---
 
-<a name="arabic-version"></a>
+## ✨ Features
 
-# 🚗 مساعد أفاتار الذكي | Avatr 12 Assist
-
-لوحة تحكم ويب تفاعلية ومصممة بعناية لمالكي سيارة **أفاتار 12 (Avatr 12)**. تساعدك هذه الأداة على التحكم في السيارة صوتياً باستخدام أوامر باللغة الصينية المتوافقة مع نظام Huawei HarmonyOS المدمج في السيارة.
-
-## ✨ المميزات الجديدة
-*   🌍 **دعم ثنائي اللغة**: واجهة كاملة تدعم اللغتين **العربية** و**الإنجليزية** بالتنقل السلس.
-*   📱 **تطبيق مثبت (PWA)**: يمكن إضافة الموقع للشاشة الرئيسية ليظهر كأيقونة تطبيق مستقلة.
-*   🎤 **تعرف ذكي أسرع**: تم تحسين أمر الاستيقاظ "هي شياو يي" ليُكرر مرتين برمجياً لضمان الاستجابة الفورية.
-*   🚀 **يعمل بدون إنترنت**: الكود مصمم ليعمل بالكامل دون الحاجة لاتصال بالشبكة.
-*   🎨 **واجهة عصرية**: تصميم زجاجي (Glassmorphism) مريح للعين ومتجاوب مع جميع الشاشات.
-*   🔊 **نطق صوتي (TTS)**: تقنية مدمجة تنطق الأوامر الصينية فور الضغط على الزر.
+- 🌐 **ثنائية اللغة**: دعم كامل للغة العربية والإنجليزية
+- 📴 **يعمل بدون إنترنت**: كل الأوامر مدمجة بالكود HTML
+- 🔊 **Text-to-Speech**: يستخدم تقنية المتصفح للنطق الصوتي
 
 ---
 
-## 📖 Command Guide | دليل الأوامر
+## 🚀 Installation
 
-### 🎤 Wake Up Commands | التفعيل
-| Icon | Arabic | English | Chinese |
-| :--- | :--- | :--- | :--- |
-| 🎤 | تفعيل المساعد | Wake Assistant | 嗨，小艺，小艺 |
-| 👋 | مرحباً | Hello | 你好 |
-| 👍 | شكراً | Thank you | 谢谢 |
-
-### 🪟 Windows & Doors | النوافذ والأبواب
-| Icon | Arabic | English | Chinese |
-| :--- | :--- | :--- | :--- |
-| 🪟 | نافذة السائق | Driver Window | 打开主驾车窗 |
-| 🪟 | نافذة الراكب | Co-pilot Window | 打开副驾车窗 |
-| 🔓 | فتح الكل | Open All Windows | 打开所有车窗 |
-| ☀️ | فتح السقف | Open Roof | 打开天窗 |
-| 🌥️ | غلق السقف | Close Roof | 关闭天窗 |
-| 🧳 | فتح الصندوق | Open Trunk | 打开后备箱 |
-| 🔋 | صندوق أمامي | Open Frunk | 打开前备箱 |
-
-### 💺 Seats & Massage | المقاعد والمساج
-| Icon | Arabic | English | Chinese |
-| :--- | :--- | :--- | :--- |
-| 🛌 | وضع القيلولة | Nap Mode | 休息模式 |
-| 👨‍🚀 | وضع الجاذبية | Zero Gravity | 零重力模式 |
-| 💆 | مساج السائق | Driver Massage | 打开主驾按摩 |
-| 🔥 | تدفئة السائق | Driver Heat | 打开主驾加热 |
-| 🌬️ | تهوية السائق | Driver Vent | 打开主驾通风 |
-| 🎯 | تدفئة المقود | Steering Heat | 打开方向盘加热 |
+1. قم بتحميل ملف `index.html`
+2. افتح الملف باستخدام متصفح الجوال
+3. على iPhone/Android، قم بفتح "Share" ثم "Add to Home Screen"
+4. ستظهر أيقونة 🚗 بجانب الصفحة في نظام PWA
 
 ---
 
-## 🛠️ Tech Stack | التقنيات المستخدمة
-*   **HTML5 / PWA Meta**
-*   **CSS3 (Glassmorphism)**
-*   **JavaScript ES6+**
+## 📖 User Guide
 
-## 👤 Credits | المطور
-Made with 💙 from the **UAE** 🇦🇪
-Developed by: **@binnoma**
+### 1. تنشيط المساعد (Wake Word)
+
+> ⚠️ هذه الخطوة ضرورية دائماً قبل أي أمر
+
+| الأمر | الصوت |
+|------|--------|
+| `嗨，小艺` (مرتين) | Hi Xiaoyi x2 |
+
+---
+
+### 2. الأبواب (Doors)
+
+| العربية | الصينية | المهمة |
+|----------|----------|---------|
+| فتح باب السائق | 解锁主驾车门 | Driver Unlock |
+| قفل باب السائق | 锁住主驾车门 | Driver Lock |
+| فتح باب الراكب | 解锁副驾车门 | Unlock Co-pilot |
+| قفل باب الراكب | 锁住副驾车门 | Lock Co-pilot |
+| فتح الكل (الأبواب) | 解锁所有车门 | Unlock All |
+| قفل الكل (الأبواب) | 锁上所有车门 | Lock All |
+| فتح الصندوق | 打开后备箱 | Open Trunk |
+| غلق الصندوق | 关闭后备箱 | Close Trunk |
+| صندوق أمامي | 打开前备箱 | Frunk |
+| باب الوقود | 打开油箱盖 | Fuel Cap |
+| فتح منفذ الشحن | 打开充电口 | Open Charging Port |
+| إغلاق منفذ الشحن | 关闭充电口 | Close Charging Port |
+
+---
+
+### 3. النوافذ (Windows)
+
+| العربية | الصينية | المهمة |
+|----------|----------|---------|
+| نافذة السائق (يسار) | 打开主驾车窗 | Driver Win (Left) |
+| نافذة السائق (يمين) | 打开右驾车窗 | Driver Win (Right) |
+| نافذة خلفي (يسار) | 打开左后车窗 | Rear Left Win |
+| نافذة خلفي (يمين) | 打开右后车窗 | Rear Right Win |
+| فتح الكل (النوافذ) | 打开所有车窗 | Open All Windows |
+| غلق الكل (النوافذ) | 关闭所有车窗 | Close All Windows |
+| فتح السقف | 打开天窗 | Open Sunroof |
+| غلق السقف | 关闭天窗 | Close Sunroof |
+| طوي المرايا | 折叠后视镜 | Fold Mirrors |
+| فرد المرايا | 展开后视镜 | Unfold Mirrors |
+
+---
+
+### 4. المقاعد (Seats)
+
+#### أ. مقعد السائق (Driver Seat)
+
+| العربية | الصينية |
+|----------|----------|
+| مساج (شغال) | 打开主驾按摩 |
+| إيقاف مساج | 关闭主驾按摩 |
+| تدفئة (شغال) | 打开主驾加热 |
+| إيقاف التدفئة | 关闭主驾加热 |
+| تهوية (شغال) | 打开主驾通风 |
+| إيقاف التهوية | 关闭主驾通风 |
+
+#### ب. مقعد الراكب (Co-pilot)
+
+| العربية | الصينية |
+|----------|----------|
+| مساج (شغال) | 打开副驾按摩 |
+| إيقاف مساج | 关闭副驾按摩 |
+| تدفئة (شغال) | 打开副驾加热 |
+| إيقاف التدفئة | 关闭副驾加热 |
+| تهوية (شغال) | ���开副驾通风 |
+| إيقاف التهوية | 关闭副驾通风 |
+
+#### ج. خلفي أيسار (Rear Left)
+
+| العربية | الصينية |
+|----------|----------|
+| مساج (شغال) | 打开左后按摩 |
+| إيقاف مساج | 关闭左后按摩 |
+| تدفئة (شغال) | 打开左后加热 |
+| إيقاف التدفئة | 关闭左后加热 |
+| تهوية (شغال) | 打开左后通风 |
+| إيقاف التهوية | 关闭左后通风 |
+
+#### د. خلفي أيمن (Rear Right)
+
+| العربية | الصينية |
+|----------|----------|
+| مساج (شغال) | 打开右后按摩 |
+| إيقاف مساج | 关闭右后按摩 |
+| تدفئة (شغال) | 打开右后加热 |
+| إيقاف التدفئة | 关闭右后加热 |
+| تهوية (شغال) | 打开右后通风 |
+| إيقاف التهوية | 关闭右后通风 |
+
+#### هـ. المقود (Steering)
+
+| العربية | الصينية |
+|----------|----------|
+| تدفئة (شغال) | 打开方向盘加热 |
+| إيقاف التدفئة | 关闭方向盘加热 |
+
+---
+
+### 5. النوافذ الجانبي (Side Windows)
+
+| العربية | الصينية | المهمة |
+|----------|----------|---------|
+| فتح الكل (الأبواب) | 解锁所有车门 | Unlock All (Doors) |
+| قفل الكل (الأبواب) | 锁上所有车门 | Lock All (Doors) |
+| فتح السقف | 打开天窗 | Open Sunroof |
+| غلق السقف | 关闭天窗 | Close Sunroof |
+| فتح الصندوق | 打开后备箱 | Open Trunk |
+| غلق الصندوق | 关闭后备箱 | Close Trunk |
+| صندوق أمامي | 打开前备箱 | Front Trunk |
+| باب الوقود | 打开油箱 | Fuel Cap |
+| منفذ الشحن | 打开充电口 | Open Port |
+| إغلاق منفذ الشحن | 关闭充电口 | Close Port |
+
+---
+
+### 6. الملاحة (Navigation)
+
+| العربية | الصينية | المهمة |
+|----------|----------|---------|
+| الذهاب للمنزل | 导航回家 | Go Home |
+| محطة الشحن | 导航到充电站 | Charging Station |
+| بدء الملاحة | 开始导航 | Start Nav |
+| إلغاء الملاحة | 停止导航 | Stop Nav |
+| الطريق الأسرع | 最快路线 | Fastest Route |
+| تجنب السريع | 避免高速 | Avoid Highway |
+
+---
+
+### 7. الترفيه (Media)
+
+| العربية | الصينية | المهمة |
+|----------|----------|---------|
+| تشغيل موسيقى | 播放音乐 | Play Music |
+| إيقاف مؤقت | 暂停音乐 | Pause |
+| المقطع التالي | 下一首 | Next |
+| السابق | 上一首 | Previous |
+| رفع الصوت | 音量大一点 | Volume Up |
+| تخفيض الصوت | 音量小一点 | Volume Down |
+| كتم الصوت | 静音 | Mute |
+| فتح دوين | 打开抖音 | Open Douyin |
+| تطبيقات أخرى | 打开应用 | Other Apps |
+
+---
+
+### 8. الإضاءة (Lights)
+
+| العربية | الصينية | المهمة |
+|----------|----------|---------|
+| الإضاءة المحيطة | 打开氛围灯 | Ambient Light |
+| إطفاء الإضاءة | 关闭氛围灯 | Lights Off |
+| لون أزرق | 蓝色氛围灯 | Blue Light |
+| لون أبيض | 白色氛围灯 | White Light |
+| لون أحمر | 红色氛围灯 | Red Light |
+
+---
+
+### 9. تنزيل البرامج (Apps)
+
+| التطبيق | أيقونة | الأمر بالصيني |
+|----------|--------|---------------|
+| Bilibili | 📺 | 下载哔哩哔哩 |
+| Toutiao | 📰 | 下载头条 |
+| Youku | 🍿 | 下载优酷 |
+| iQiyi | 🎬 | 下载爱奇艺 |
+| Tencent Video | 📺 | 下载腾讯视频 |
+| Mango TV | 📺 | 下载芒果TV |
+| Douyin | 🎵 | 下载抖音 |
+| Douyu | 🎮 | 下载斗鱼 |
+| Kuake | 🤖 | 下载夸克 |
+| AMap | 🗺️ | 下载高德地图 |
+| Tencent Map | 🗺️ | 下载腾讯地图 |
+| Xunlei | ⚡ | 下载迅雷 |
+| UC Browser | 🌐 | 下载UC浏览器 |
+| QQ Browser | 🐧 | 下载QQ浏览器 |
+| Doubao | 🤖 | 下载都宝 |
+| Ali Cloud | ☁️ | 下载阿里云 |
+
+---
+
+## ⚙️ Credits
+
+| المنصة | الحساب |
+|--------|--------|
+| TikTok | [@smart.cars.uae](https://tiktok.com/@smart.cars.uae) |
+| GitHub | [binnoma](https://github.com/binnoma) |
+
+---
+
+## 🔧 Developer
+
+- **Name**: [@binnoma](https://github.com/binnoma)
+- **Location**: 🇦🇪 الإمارات العربية المتحدة
+- **License**: [MIT](./LICENSE)
+
+---
+
+<div align="center">
+
+© 2026 Avatr Voice Assistant. All rights reserved.
+
+</div>
