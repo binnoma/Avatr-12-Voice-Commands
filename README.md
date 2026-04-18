@@ -211,13 +211,6 @@
 
 ---
 
-## ⚙️ Credits
-
-| المنصة | الحساب |
-|--------|--------|
-| TikTok | [@smart.cars.uae](https://tiktok.com/@smart.cars.uae) |
-| GitHub | [binnoma](https://github.com/binnoma) |
-
 ---
 
 ## 🔧 Developer
